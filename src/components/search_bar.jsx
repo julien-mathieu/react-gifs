@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 
 class SearchBar extends Component {
+  handleChange = (event) => {
+    this.props.searchFunction(event.target.value)
+  }
+
   render() {
     return(
       <input
@@ -9,6 +13,7 @@ class SearchBar extends Component {
         id="search-input"
         placeholder="Search..."
         className="form-control form-search"
+        onChange={this.handleChange}
       />
     );
   }
