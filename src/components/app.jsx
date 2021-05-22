@@ -16,15 +16,13 @@ class App extends React.Component {
   }
 
   search = (query) => {
-    giphy('wGbTxD8ZARANdpY8S3gbx8TEggEt7ArJ').search({
-      q: query,
-      rating: 'g',
-      limit: 10
-    }, (err, res) => {
-        // Res contains gif data!
-      console.log(res.data);
-      this.setState({gifs: res.data})
-    });
+    const url = `https://api.giphy.com/v1/gifs/search?q=${query}&limit=10&rating=g&api_key=wGbTxD8ZARANdpY8S3gbx8TEggEt7ArJ`
+      fetch(url)
+      .then(results => { return results.json();
+      }).then(data => {
+        this.setState({gifs: data.data});
+        console.log(data.data)
+      });
   }
 
   selectGif = (id) => {
